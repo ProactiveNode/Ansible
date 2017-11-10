@@ -1,0 +1,22 @@
+---
+- hosts: networkMachines
+  user: penguin
+  become: yes
+  become_method: sudo
+  tasks:
+
+  - name: Installing Wireshark on CentOS
+    yum: name=wireshark state=present
+    when: ansible_distribution == 'CentOS'
+
+  - name: Installing Wireshark on Ubuntu
+    apt: name=wireshark state=present
+    when: ansible_distribution == 'Ubuntu'
+
+  - name: Installing nmap on CentOS
+    yum: name=nmap state=present
+    when: ansible_distribution == 'CentOS'
+
+  - name: Installing nmap on Ubuntu
+    apt: name=nmap state=present
+    when: ansible_distribution == 'Ubuntu'
