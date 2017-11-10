@@ -1,0 +1,10 @@
+---
+- hosts: CentOSMachines
+  user: penguin
+  become: yes
+  become_method: sudo
+  tasks:
+
+  - name: Installing Vim
+    yum: name=vim state=present
+    when: ansible_distribution == 'CentOS'
